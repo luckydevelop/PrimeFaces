@@ -1,0 +1,19 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+			 version="2.0">
+	<!-- Will be referenced in Spring Context File -->
+	<persistence-unit name="jpa-persistence" transaction-type="RESOURCE_LOCAL">
+		<class>ua.luckydev.entity.Person</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/primefaces" />
+			<property name="javax.persistence.jdbc.user" value="admin" />
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.password" value="admin" />
+			<!--<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>-->
+		</properties>
+	</persistence-unit>
+</persistence>
+
+

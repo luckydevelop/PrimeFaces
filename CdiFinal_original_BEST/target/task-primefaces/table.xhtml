@@ -34,7 +34,7 @@
             <f:facet name="header">
                 СОТРУДНИКИ
                 <p:commandButton id="toggle" type="button" value="Columns" style="float:right; "
-                                 icon="ui-icon-calculator"/>
+                                 icon="ui-icon-calculator" title="Скрыть или показать необходимые колонки"/>
                 <p:columnToggler datasource="mainTable" trigger="toggle">
                     <p:ajax event="toggle" listener="#{personBean.onToggle}"/>
                 </p:columnToggler>
@@ -61,8 +61,8 @@
             <p:column headerText="Позиция" filterBy="#{person.position}" filterMatchMode="in"
                       visible="#{personBean.listColumnsIsVisible[3]}">
                 <f:facet name="filter">
-                    <p:selectCheckboxMenu label="Позиции" onchange="PF('PersonTable').filter()" panelStyle="width:125px"
-                                          scrollHeight="120">
+                    <p:selectCheckboxMenu label="Должность" onchange="PF('PersonTable').filter()" panelStyle="width:125px"
+                                          scrollHeight="120" title="показать или скрыть сотрудников с опеределённой должностью">
                         <f:selectItems value="#{personBean.positions}"/>
                     </p:selectCheckboxMenu>
                 </f:facet>
@@ -75,12 +75,12 @@
                 <h:outputText rendered="#{person.position=='Рабочий'}" value="#{person.manager}"/>
 
                 <p:selectOneMenu rendered="#{person.position=='Менеджер'}" labelTemplate="Рабочии менеджера"
-                                 style="width:180px">
+                                 style="width:180px" title="Рабочии менеджера #{person.fio}" >
                     <f:selectItems value="#{personBean.getWorkersOfManager(person.fio)}"/>
                 </p:selectOneMenu>
 
                 <p:inputTextarea rendered="#{(person.position!='Рабочий') and (person.position!='Менеджер')}"
-                                 value="#{person.info}" title="Описание сотрудника 3-ий группы" rows="5" cols="20"
+                                 value="#{person.info}" title="Дополнительная информация по сотруднику 3-ий группы #{person.fio}" rows="5" cols="20"
                                  readonly="true" autoResize="false"/>
             </p:column>
 
@@ -110,10 +110,10 @@
                 <p:inputText id="fioUpdate" value="#{personBean.person.fio}" alt="Введите ФИО сотрудника, пожалуйста"
                              required="true" placeholder="Фамилия Имя Отчество"/>
 
-                <p:outputLabel for="positionUpdate" title="Занимаемая позиция сотрудника" value="Занимаемая позиция:"/>
+                <p:outputLabel for="positionUpdate" title="Занимаемая должность сотрудника" value="Занимаемая позиция:"/>
 
                 <p:selectOneMenu id="positionUpdate" value="#{personBean.person.position}" editable="true"
-                                 style="width:180px">
+                                 style="width:180px" title="Выберете или введите новую должность">
                     <p:ajax listener="#{personBean.changePosition(personBean.person.position)}"
                             oncomplete="PF('addUpdatePerson').show()" update=":addUpdatePerson"/>
                     <f:selectItems value="#{personBean.getPositions()}"/>

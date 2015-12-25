@@ -5,6 +5,7 @@
 
 <h:head>
     <title>Test Task</title>
+    <link type="text/css" rel="stylesheet" href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-glass-x" />
 </h:head>
 <h:body>
 
@@ -29,7 +30,8 @@
         <p:dataTable id="mainTable" var="person" value="#{personBean.getListPersons()}" widgetVar="PersonTable"
                      emptyMessage="Рабочих не найдено" paginator="true" rows="15"
                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                     rowsPerPageTemplate="5,10,15" style="width:1000px;font-size:13px;margin-left: 150px">
+                     rowsPerPageTemplate="5,10,15" style="font-size:13px;margin-left: 150px">
+                     <!--rowsPerPageTemplate="5,10,15" style="width:1000px;font-size:13px;margin-left: 150px">-->
 
             <f:facet name="header">
                 СОТРУДНИКИ
@@ -62,7 +64,7 @@
                       visible="#{personBean.listColumnsIsVisible[3]}">
                 <f:facet name="filter">
                     <p:selectCheckboxMenu label="Должность" onchange="PF('PersonTable').filter()" panelStyle="width:125px"
-                                          scrollHeight="120" title="показать или скрыть сотрудников с опеределённой должностью">
+                                          scrollHeight="120" title="Показать или скрыть сотрудников с опеределённой должностью">
                         <f:selectItems value="#{personBean.positions}"/>
                     </p:selectCheckboxMenu>
                 </f:facet>

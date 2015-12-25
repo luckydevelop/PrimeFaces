@@ -14,6 +14,7 @@
           <element id="library" level="project" name="Maven: org.eclipse.persistence:eclipselink:2.5.0" />
           <element id="library" level="project" name="Maven: org.eclipse.persistence:javax.persistence:2.1.0" />
           <element id="library" level="project" name="Maven: org.eclipse.persistence:commonj.sdo:2.1.1" />
+          <element id="library" level="project" name="Maven: org.primefaces.themes:cupertino:1.0.10" />
         </element>
       </element>
       <element id="directory" name="META-INF">

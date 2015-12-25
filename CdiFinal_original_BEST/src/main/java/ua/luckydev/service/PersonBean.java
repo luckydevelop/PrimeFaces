@@ -107,7 +107,6 @@ public class PersonBean implements Serializable
         {
             for (Person oldWorker : listPersons)
             {
-                System.out.println(oldWorker);
                 if ((oldWorker.getManager() != null) && (oldWorker.getPosition().equals("Рабочий")) && (oldWorker.getManager().equals(oldPerson.getFio()))) //enum
                 {
                     oldWorker.setManager(person.getFio());
@@ -124,10 +123,28 @@ public class PersonBean implements Serializable
 
     public void delete(Person person)
     {
+        Person deletedPerson = personDAO.getPerson(person.getId());
+
+        if ((deletedPerson.getPosition().equals("Менеджер")))
+        {
+            for (Person worker : listPersons)
+            {
+                System.out.println(worker);
+                if ((worker.getManager() != null) && (worker.getPosition().equals("Рабочий")) && (worker.getManager().equals(deletedPerson.getFio()))) //enum
+                {
+                    worker.setManager(null);
+                    personDAO.updatePerson(worker);
+                }
+            }
+        }
+
         personDAO.deletePerson(person);
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Успешно!", "Сотрудник " + person.getFio() + " удалён из БД")); //сообщения зачесать
+        context.addMessage(null, new FacesMessage("Успешно!", "Сотрудник " + person.getFio() + " удалён из БД"));
         updateListPersons();
+
+
+
     }
 
     public void updateListPersons()

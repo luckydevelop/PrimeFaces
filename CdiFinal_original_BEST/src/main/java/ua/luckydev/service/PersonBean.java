@@ -80,13 +80,13 @@ public class PersonBean implements Serializable
     {
         personDAO.addPerson(person);
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("Успешно!", "Сотрудник " + this.person.getFio() + " добавлен в БД"));
+                new FacesMessage("Успешно!", "Сотрудник " + person.getFio() + " добавлен в БД"));
         updateListPersons();
     }
 
     public void getPersonById(int id)
     {
-        this.person = personDAO.getPerson(id); //без this тоже можно
+        person = personDAO.getPerson(id);
     }
 
     public void updatePerson()
@@ -181,7 +181,7 @@ public class PersonBean implements Serializable
 
     public void newPerson(String value)
     {
-        this.person = new Person();
+        person = new Person();
         person.setPosition(value);
     }
 
